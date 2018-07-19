@@ -48,7 +48,7 @@ def show_melon(melon_id):
     Show all info about a melon. Also, provide a button to buy that melon.
     """
 
-    melon = melons.get_by_id("meli")
+    melon = melons.get_by_id(melon_id)
     print(melon)
     return render_template("melon_details.html",
                            display_melon=melon)
@@ -108,29 +108,29 @@ def show_login():
     return render_template("login.html")
 
 
-@app.route("/login", methods=["POST"])
-def process_login():
-    """Log user into site.
+# @app.route("/login", methods=["POST"])
+# def process_login():
+#     """Log user into site.
 
-    Find the user's login credentials located in the 'request.form'
-    dictionary, look up the user, and store them in the session.
-    """
+#     Find the user's login credentials located in the 'request.form'
+#     dictionary, look up the user, and store them in the session.
+#     """
 
-    # TODO: Need to implement this!
+#     # TODO: Need to implement this!
 
-    # The logic here should be something like:
-    #
-    # - get user-provided name and password from request.form
-    # - use customers.get_by_email() to retrieve corresponding Customer
-    #   object (if any)
-    # - if a Customer with that email was found, check the provided password
-    #   against the stored one
-    # - if they match, store the user's email in the session, flash a success
-    #   message and redirect the user to the "/melons" route
-    # - if they don't, flash a failure message and redirect back to "/login"
-    # - do the same if a Customer with that email doesn't exist
+#     # The logic here should be something like:
+#     #
+#     # - get user-provided name and password from request.form
+#     # - use customers.get_by_email() to retrieve corresponding Customer
+#     #   object (if any)
+#     # - if a Customer with that email was found, check the provided password
+#     #   against the stored one
+#     # - if they match, store the user's email in the session, flash a success
+#     #   message and redirect the user to the "/melons" route
+#     # - if they don't, flash a failure message and redirect back to "/login"
+#     # - do the same if a Customer with that email doesn't exist
 
-    return "Oops! This needs to be implemented"
+#     return "Oops! This needs to be implemented"
 
 
 @app.route("/checkout")
