@@ -63,8 +63,17 @@ def show_shopping_cart():
     # The logic here will be something like:
     #
     # - get the cart dictionary from the session
-    # - create a list to hold melon objects and a variable to hold the total
+    #import pdb; pdb.set_trace()
+    # cart_items = session["cart"]
+
+    # # - create a list to hold melon objects and a variable to hold the total
+    # melons_in_cart = []
+    # for melon in cart_items:
+    #     melon_obj = get_by_id(melon)
+    #     melons_in_cart.append(melon_obj)
+
     #   cost of the order
+
     # - loop over the cart dictionary, and for each melon id:
     #    - get the corresponding Melon object
     #    - compute the total cost for that type of melon
@@ -97,16 +106,35 @@ def add_to_cart(melon_id):
     # - increment the count for that melon id by 1
     # - flash a success message
     # - redirect the user to the cart page
+    
 
-    cart_status = session.get("cart", None)
+    import pdb; pdb.set_trace()
 
-    if cart_status:
-        # if the cart already exists
-        session["cart"]["melon_id"] = session["cart"].get(melon_id, 0) + 1
-    else:
-        # cart doesn't exist yet
+    # check if the cart exists, if not make it
+    if not "cart" in session:
         session["cart"] = {}
 
+    # adding melon_id to cart
+    if melon_id in session["cart"]:
+        # yes this melon type is in the cart already; increment
+        session["cart"][melon_id] = session["cart"].get(melon_id) + 1
+    else:
+        # this melon type isn't in the cart yet; initialize
+        session["cart"][melon_id] = 1
+
+
+
+
+
+
+    # if cart_status:
+        # if the cart already exists
+    #     session["cart"][melons.get_by_id(melon_id).common_name] = session["cart"].get(melon_id, 0) + 1
+    # else:
+    #     # cart doesn't exist yet
+    #     session["cart"] = {melons.get_by_id(melon_id).common_name: 1}
+
+    #flash("{}".format(session["cart"]))
     flash("Added {} to cart".format(melons.get_by_id(melon_id).common_name))
     return redirect("/cart")
     
